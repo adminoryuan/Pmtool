@@ -24,6 +24,22 @@ public class HpmCore {
     private static final List<String> RequstMethod   = Arrays.asList("POST","GET","PUT","DELETE") ;
 
     /**
+     * 设置最大请求量
+     * @param count
+     */
+    public  void SetPmCount(int count){
+        PMCount=count;
+    }
+
+    /**
+     * 设置单次请求量
+     * @param conConut
+     */
+    public void ConCount(int conConut){
+        this.ConConut=conConut;
+    }
+
+    /**
      *
      * @param PMCount 总请求数量
      * @param conConut 并发数量
@@ -33,6 +49,7 @@ public class HpmCore {
         this.PMCount = PMCount;
         ConConut = conConut;
     }
+
 
     public HpmCore() {
 
@@ -57,7 +74,7 @@ public class HpmCore {
     }
 
 
-    public HttpURLConnection GetUrlConnection(){
+    private HttpURLConnection GetUrlConnection(){
         try {
             HttpURLConnection connection= (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(Method);
