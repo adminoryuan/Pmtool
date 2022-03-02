@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author yh
@@ -14,8 +16,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class HpmCore {
 
-    private  int PMCount=100; //默认100个请求
-    private  int ConConut=10; //默认并发
+    private  int PMCount=1000; //默认100个请求
+    private  int ConConut=100; //默认并发
     private URL url;
     private String Method;
 
@@ -73,10 +75,11 @@ public class HpmCore {
     public void StartManometry() throws InterruptedException {
         List<HpRequest.ResponBody> list=new LinkedList<>();
 
+        ExecutorService service = Executors.newFixedThreadPool(ConConut+1);
         for (int i=0;i<PMCount/ConConut;i++) {
             CountDownLatch Latch = new CountDownLatch(ConConut);
-            for (int j = 0; j < ConConut; j++) {
-                new Thread(new Runnable() {
+           for (int j = 0; j < ConConut; j++) {
+                service.execute(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -90,10 +93,9 @@ public class HpmCore {
                         }
 
                     }
-                }).start();
-
+                });
             }
-            Latch.await();
+             Latch.await();
             System.out.println("第"+i+"轮并发");
         }
         System.out.println("执行完毕");
