@@ -3,6 +3,7 @@ package com.HpmTools.core;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -25,6 +26,7 @@ public class HpCommandLine {
         CmdMap.put("-c",CmdFunc::SetConCount);
     }
     public static void main(String[] args) throws IOException, InterruptedException {
+        args=new String[]{"-o","http://127.0.0.1:5000/test","-m","GET","-p","100","-c","10"};
         if (args.length==0){
             CmdFunc.GetHerper();
             return;
