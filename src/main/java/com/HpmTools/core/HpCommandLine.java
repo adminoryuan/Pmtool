@@ -1,4 +1,4 @@
-package HHpm;
+package com.HpmTools.core;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

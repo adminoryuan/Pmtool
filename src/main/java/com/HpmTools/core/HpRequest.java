@@ -1,4 +1,4 @@
-package HHpm;
+package com.HpmTools.core;
 
 import com.sun.net.httpserver.Headers;
 
@@ -10,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.http.HttpRequest;
 
 /**
  * @author yh
