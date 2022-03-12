@@ -16,8 +16,8 @@ import java.util.concurrent.Executors;
  */
 public class HpmCore {
 
-    private  int PMCount=1000; //默认100个请求
-    private  int ConConut=100; //默认并发
+    private  int PMCount=100; //默认100个请求
+    private  int ConConut=10; //默认并发
     private URL url;
     private String Method;
 
@@ -115,6 +115,7 @@ public class HpmCore {
              Latch.await();
             System.out.println("第"+i+"轮并发");
         }
+        service.shutdown();
         System.out.println("执行完毕");
     }
 

@@ -25,8 +25,7 @@ public class HpCommandLine {
         CmdMap.put("-p",CmdFunc::SetPmCount);
         CmdMap.put("-c",CmdFunc::SetConCount);
     }
-    public static void main(String[] args) throws IOException, InterruptedException {
-        args=new String[]{"-o","http://127.0.0.1:5000/test","-m","GET","-p","100","-c","10"};
+    public static void StartCmd(String[] args) throws IOException, InterruptedException {
         if (args.length==0){
             CmdFunc.GetHerper();
             return;
@@ -38,7 +37,6 @@ public class HpCommandLine {
         }
 
         core.StartManometry();
-
     }
 
 }
